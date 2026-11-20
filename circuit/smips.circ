@@ -96,9 +96,9 @@
   </lib>
   <lib desc="#I/O" name="6"/>
   <lib desc="#Base" name="7"/>
-  <lib desc="file#Instruction_Decoder.circ" name="8"/>
-  <lib desc="file#Control_Unit.circ" name="9"/>
-  <lib desc="file#Datapath.circ" name="10"/>
+  <lib desc="file#Control_Unit.circ" name="8"/>
+  <lib desc="file#Datapath.circ" name="9"/>
+  <lib desc="file#Instruction_Decoder.circ" name="10"/>
   <lib desc="file#Branch_Control.circ" name="11"/>
   <main name="Board"/>
   <options>
@@ -135,7 +135,7 @@
   </toolbar>
   <circuit name="Board">
     <a name="circuit" val="Board"/>
-    <a name="simulationFrequency" val="1.0"/>
+    <a name="simulationFrequency" val="128000.0"/>
     <comp lib="0" loc="(120,160)" name="Clock">
       <a name="appearance" val="classic"/>
       <a name="label" val="Reloj"/>
@@ -386,44 +386,48 @@
     </comp>
     <comp lib="0" loc="(1220,470)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="ALUOutWrite"/>
+      <a name="label" val="zero_enable"/>
     </comp>
     <comp lib="0" loc="(1220,500)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="IsStoreByte"/>
+      <a name="label" val="ALUOutWrite"/>
     </comp>
     <comp lib="0" loc="(1220,530)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="IsStoreByte"/>
+    </comp>
+    <comp lib="0" loc="(1220,560)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="AluSrcA"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="0" loc="(1220,560)" name="Tunnel">
+    <comp lib="0" loc="(1220,590)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="ALUSrcB"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="0" loc="(1220,590)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="IsLoadByte"/>
-    </comp>
     <comp lib="0" loc="(1220,620)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Is_lb"/>
+    </comp>
+    <comp lib="0" loc="(1220,650)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="PCWrite"/>
     </comp>
-    <comp lib="0" loc="(1220,650)" name="Tunnel">
+    <comp lib="0" loc="(1220,680)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="PCSrc"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="0" loc="(1220,680)" name="Tunnel">
+    <comp lib="0" loc="(1220,710)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="IsLoadWord"/>
     </comp>
-    <comp lib="0" loc="(1220,710)" name="Tunnel">
+    <comp lib="0" loc="(1220,740)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="MDRWrite"/>
     </comp>
-    <comp lib="0" loc="(1220,740)" name="Tunnel">
+    <comp lib="0" loc="(1220,770)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="MemToReg"/>
       <a name="width" val="2"/>
@@ -470,6 +474,9 @@
     <comp lib="0" loc="(1670,1360)" name="Tunnel">
       <a name="label" val="AluSrcA"/>
       <a name="width" val="2"/>
+    </comp>
+    <comp lib="0" loc="(1670,1390)" name="Tunnel">
+      <a name="label" val="zero_enable"/>
     </comp>
     <comp lib="0" loc="(1670,970)" name="Tunnel">
       <a name="label" val="HALT"/>
@@ -720,6 +727,9 @@
     <comp lib="0" loc="(910,740)" name="Tunnel">
       <a name="label" val="IsStore"/>
     </comp>
+    <comp lib="0" loc="(910,770)" name="Tunnel">
+      <a name="label" val="Is_lb"/>
+    </comp>
     <comp lib="0" loc="(970,1000)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="reset"/>
@@ -797,7 +807,7 @@
       <a name="facing" val="east"/>
       <a name="label" val="clk"/>
     </comp>
-    <comp lib="10" loc="(1730,110)" name="Datapath"/>
+    <comp lib="10" loc="(680,110)" name="Instruction_Decoder"/>
     <comp lib="11" loc="(670,930)" name="Branch_Control"/>
     <comp lib="7" loc="(500,40)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
@@ -807,8 +817,8 @@
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="No cambiar nombres, anchos ni sentido de los pines: la placa depende de ellos."/>
     </comp>
-    <comp lib="8" loc="(680,110)" name="Instruction_Decoder"/>
-    <comp lib="9" loc="(1440,970)" name="Control_unit"/>
+    <comp lib="8" loc="(1440,970)" name="Control_unit"/>
+    <comp lib="9" loc="(1730,110)" name="Datapath"/>
     <wire from="(1000,1030)" to="(1000,1060)"/>
     <wire from="(1000,1030)" to="(1220,1030)"/>
     <wire from="(1010,1050)" to="(1010,1090)"/>
@@ -863,6 +873,7 @@
     <wire from="(1220,680)" to="(1410,680)"/>
     <wire from="(1220,710)" to="(1420,710)"/>
     <wire from="(1220,740)" to="(1430,740)"/>
+    <wire from="(1220,770)" to="(1440,770)"/>
     <wire from="(1230,130)" to="(1230,140)"/>
     <wire from="(1230,130)" to="(1510,130)"/>
     <wire from="(1240,150)" to="(1240,170)"/>
@@ -917,8 +928,13 @@
     <wire from="(1440,1190)" to="(1550,1190)"/>
     <wire from="(1440,1210)" to="(1540,1210)"/>
     <wire from="(1440,1230)" to="(1530,1230)"/>
+    <wire from="(1440,1250)" to="(1520,1250)"/>
+    <wire from="(1440,550)" to="(1440,770)"/>
+    <wire from="(1440,550)" to="(1510,550)"/>
     <wire from="(1440,970)" to="(1670,970)"/>
     <wire from="(1440,990)" to="(1660,990)"/>
+    <wire from="(1520,1250)" to="(1520,1390)"/>
+    <wire from="(1520,1390)" to="(1670,1390)"/>
     <wire from="(1530,1230)" to="(1530,1360)"/>
     <wire from="(1530,1360)" to="(1670,1360)"/>
     <wire from="(1540,1210)" to="(1540,1330)"/>
@@ -1013,6 +1029,9 @@
     <wire from="(680,490)" to="(720,490)"/>
     <wire from="(680,510)" to="(710,510)"/>
     <wire from="(680,530)" to="(700,530)"/>
+    <wire from="(680,550)" to="(690,550)"/>
+    <wire from="(690,550)" to="(690,770)"/>
+    <wire from="(690,770)" to="(910,770)"/>
     <wire from="(700,530)" to="(700,740)"/>
     <wire from="(700,740)" to="(910,740)"/>
     <wire from="(710,510)" to="(710,710)"/>

@@ -150,6 +150,12 @@
       <a name="appearance" val="classic"/>
       <a name="label" val="IsJal"/>
     </comp>
+    <comp lib="0" loc="(1070,1010)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="zero_enable"/>
+      <a name="type" val="output"/>
+    </comp>
     <comp lib="0" loc="(1070,720)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="IsBranch"/>
@@ -822,7 +828,9 @@
     <wire from="(1010,790)" to="(1010,800)"/>
     <wire from="(1010,800)" to="(1050,800)"/>
     <wire from="(1010,980)" to="(1020,980)"/>
+    <wire from="(1020,1010)" to="(1070,1010)"/>
     <wire from="(1020,910)" to="(1020,980)"/>
+    <wire from="(1020,980)" to="(1020,1010)"/>
     <wire from="(1030,300)" to="(1030,380)"/>
     <wire from="(1030,380)" to="(1420,380)"/>
     <wire from="(1040,890)" to="(1070,890)"/>
